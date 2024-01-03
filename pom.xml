@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.verinite</groupId>
-	<artifactId>commons-library</artifactId>
+	<artifactId>commons</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>commons-library</name>
+	<name>commons</name>
 	<description>Common Library Package</description>
 	<properties>
 		<java.version>17</java.version>
@@ -116,9 +116,28 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <excludes>
+                        <!-- This is done because integrating projects have their own main class -->
+                        <exclude>
+                            **/TestApplication.class
+                        </exclude>
+                        <exclude>
+                            **/application.properties
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 </project>

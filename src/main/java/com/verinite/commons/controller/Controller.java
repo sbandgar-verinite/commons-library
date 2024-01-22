@@ -1,4 +1,4 @@
-package com.verinite.commons;
+package com.verinite.commons.controller;
 
 import org.graalvm.polyglot.Context;
 import org.graalvm.polyglot.Value;

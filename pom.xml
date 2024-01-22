@@ -16,7 +16,6 @@
 	<description>Common Library Package</description>
 	<properties>
 		<java.version>17</java.version>
-		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
 		<native.maven.plugin.version>0.9.17</native.maven.plugin.version>
 		<spring-graalvm.version>0.7.1</spring-graalvm.version>
 	</properties>
@@ -150,7 +149,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.2</version>
 				<executions>
 					<execution>
 						<goals>

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.verinite.commons.dto.StatusResponse;
-import com.verinite.commons.service.ConfigService;
+import com.verinite.commons.service.ConfigurationService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class ConfigurationController {
 
 	@Autowired
-	private ConfigService configService;
+	private ConfigurationService configService;
 
 	@PostMapping("/{key}")
 	public ResponseEntity<StatusResponse> addConfiguration(@PathVariable String key, @RequestBody Object value)

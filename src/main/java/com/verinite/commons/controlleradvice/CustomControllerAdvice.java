@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class CustomControllerAdvice extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(BadRequestException.class)
-	public ResponseEntity<Object> handleBadRequestException(BadRequestException ex, WebRequest request) {
+	public ResponseEntity<Object> handleBadRequestException(BadRequestException ex) {
 		ErrorResponse error = new ErrorResponse();
 		error.setCode(HttpStatus.BAD_REQUEST.value());
 		error.setMessage(ex.getValidationErrors());

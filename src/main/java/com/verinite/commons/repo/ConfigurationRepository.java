@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.verinite.commons.model.Config;
 
 @Repository
-public interface ConfigRepository extends JpaRepository<Config, Integer> {
+public interface ConfigurationRepository extends JpaRepository<Config, Integer> {
 
 	Optional<Config> findByKeyName(String key);
 

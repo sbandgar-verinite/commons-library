@@ -14,20 +14,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.verinite.commons.controlleradvice.BadRequestException;
 import com.verinite.commons.dto.StatusResponse;
 import com.verinite.commons.model.Config;
-import com.verinite.commons.repo.ConfigRepository;
-import com.verinite.commons.service.ConfigService;
+import com.verinite.commons.repo.ConfigurationRepository;
+import com.verinite.commons.service.ConfigurationService;
 import com.verinite.commons.util.Constants;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ConfigServiceImpl implements ConfigService {
+public class ConfigurationServiceImpl implements ConfigurationService {
 
-	private final Logger logger = LoggerFactory.getLogger(ConfigServiceImpl.class);
+	private final Logger logger = LoggerFactory.getLogger(ConfigurationServiceImpl.class);
 
 	@Autowired
-	private ConfigRepository configRepo;
+	private ConfigurationRepository configRepo;
 
 	@Override
 	public StatusResponse addConfiguration(String key, Object value) throws BadRequestException {

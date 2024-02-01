@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BadRequestException extends RuntimeException {
 
-	private final List<String> validationErrors;
+	private List<String> validationErrors;
 
 	public BadRequestException(List<String> validationMessages) {
 		super("Validation Failed");

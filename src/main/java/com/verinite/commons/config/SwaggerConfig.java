@@ -21,6 +21,8 @@ public class SwaggerConfig {
 	private String contextPath;
 	@Value("${spring.application.name:}")
 	private String serviceName;
+	@Value("${multi.tenant.support:true}")
+	private Boolean isMultiTenant;
 
 	@Bean
 	public OpenAPI springShopOpenAPI() {
@@ -28,8 +30,11 @@ public class SwaggerConfig {
 				.info(new Info().title(serviceName.toUpperCase() + " Management APIs")
 						.description("This is an API that covers the MVP functionality").version("v0.0.1"))
 				.servers(List.of(new Server().url(contextPath)));
-		swaggerOpenAPI.components(new Components().addParameters("tenant-id",
-				new HeaderParameter().name("tenant-id").required(true).schema(new StringSchema())));
+
+		if (Boolean.TRUE.equals(isMultiTenant)) {
+			swaggerOpenAPI.components(new Components().addParameters("tenant-id",
+					new HeaderParameter().name("tenant-id").required(true).schema(new StringSchema())));
+		}
 
 //		swaggerOpenAPI.path("/auth/**", new PathItem()
 //                .get(new io.swagger.v3.oas.models.Operation()
@@ -43,16 +48,18 @@ public class SwaggerConfig {
 //                                .content(new Content().addMediaType("*/*",
 //                                        new MediaType().schema(new Schema<String>().type("string"))))
 //                        ))));
-		
+
 		return swaggerOpenAPI;
 	}
 
 	@Bean
 	public OpenApiCustomizer openApiCustomizer() {
-		return openApi -> openApi.getPaths().values().stream().flatMap(pathItem -> 
-			pathItem.readOperations().stream())
-				.forEach(operation -> {
-					operation.addParametersItem(new HeaderParameter().$ref("#/components/parameters/tenant-id"));
-				});
+		if (Boolean.TRUE.equals(isMultiTenant)) {
+			return openApi -> openApi.getPaths().values().stream()
+					.flatMap(pathItem -> pathItem.readOperations().stream()).forEach(operation -> {
+						operation.addParametersItem(new HeaderParameter().$ref("#/components/parameters/tenant-id"));
+					});
+		}
+		return null;
 	}
 }

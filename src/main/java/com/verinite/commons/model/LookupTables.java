@@ -17,6 +17,8 @@ public class LookupTables {
 	private Long id;
 
 	private String name;
+	
+	private String label;
 
 	public Long getId() {
 		return id;
@@ -34,4 +36,11 @@ public class LookupTables {
 		this.name = name;
 	}
 
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
 }

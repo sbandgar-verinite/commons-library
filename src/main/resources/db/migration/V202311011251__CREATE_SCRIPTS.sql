@@ -16,10 +16,12 @@ CREATE TABLE `lookup_columns` (
 CREATE TABLE `lookup_tables` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `label` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `lookup_columns` (`id`, `name`, `datatype`) VALUES (1, "key", "TEXT");
-INSERT INTO `lookup_columns` (`id`, `name`, `datatype`) VALUES (2, "label", "TEXT");
-INSERT INTO `lookup_columns` (`id`, `name`, `datatype`) VALUES (3, "value", "TEXT");
+INSERT INTO `lookup_columns` (`id`, `name`, `datatype`) VALUES (1, "id", "NUMERIC");
+INSERT INTO `lookup_columns` (`id`, `name`, `datatype`) VALUES (2, "key", "TEXT");
+INSERT INTO `lookup_columns` (`id`, `name`, `datatype`) VALUES (3, "label", "TEXT");
+INSERT INTO `lookup_columns` (`id`, `name`, `datatype`) VALUES (4, "value", "TEXT");
 

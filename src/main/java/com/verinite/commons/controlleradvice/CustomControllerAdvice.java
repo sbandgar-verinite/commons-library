@@ -37,4 +37,12 @@ public class CustomControllerAdvice extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
 	}
 
+	@ExceptionHandler(InternalServerException.class)
+	public ResponseEntity<Object> handleInternalServerException(InternalServerException ex) {
+		ErrorResponse error = new ErrorResponse();
+		error.setCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		error.setMessage(ex.getValidationErrors());
+		error.setStatus("Server Failed");
+		return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

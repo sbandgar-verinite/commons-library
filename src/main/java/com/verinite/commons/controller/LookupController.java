@@ -41,6 +41,6 @@ public class LookupController {
 	@GetMapping("/{lookup}")
 	public ResponseEntity<List<Object>> getLookups(@PathVariable String lookup) throws BadRequestException {
 		List<Object> response = lookupService.getLookups(lookup);
-		return new ResponseEntity<>(response, HttpStatus.CREATED);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

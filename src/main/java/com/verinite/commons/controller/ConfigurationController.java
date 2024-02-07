@@ -16,7 +16,6 @@ import com.verinite.commons.service.ConfigurationService;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/config")
 @RequiredArgsConstructor

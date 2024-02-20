@@ -35,4 +35,8 @@ public class ConfigurationController {
 		return ResponseEntity.ok(configService.getConfiguration(key));
 	}
 
+	@GetMapping
+	public ResponseEntity<Object> getAllKeys() {
+		return ResponseEntity.ok(configService.getAllKeys());
+	}
 }

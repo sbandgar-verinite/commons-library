@@ -12,4 +12,6 @@ public interface ConfigurationService {
 
 	Object getConfiguration(String key) throws BadRequestException;
 
+	Object getAllKeys();
+
 }

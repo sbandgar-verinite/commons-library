@@ -1,5 +1,6 @@
 package com.verinite.commons.serviceimpl;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 //			throw new BadRequestException("Duplicate Key. Key already exists");
 //		}
 
-		if(existingConfig.isEmpty()) {
+		if (existingConfig.isEmpty()) {
 			Config config = new Config();
 			config.setKeyName(key);
 			try {
@@ -55,8 +56,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 			}
 			configRepo.save(config);
 			logger.info("Configuration saved successfully for key : {}", key);
-		}
-		else {
+		} else {
 			try {
 				existingConfig.get().setData(new ObjectMapper().writeValueAsString(value));
 			} catch (JsonProcessingException e) {
@@ -86,6 +86,13 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 			e.printStackTrace();
 		}
 		return data;
+	}
+
+	@Override
+	public Object getAllKeys() {
+		logger.info("[SERVICE] Request received to get all config keys ");
+		List<Config> configList = configRepo.findAll();
+		return configList.stream().map(Config::getKeyName).toList();
 	}
 
 }

@@ -1,6 +1,6 @@
 CREATE TABLE `config` (
   `config_id` bigint NOT NULL AUTO_INCREMENT,
-  `data` varchar(255) DEFAULT NULL,
+  `data` text DEFAULT NULL,
   `key_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`config_id`),
   UNIQUE KEY `UK_8c6dl7eofcfmo2y3p4gd93o3t` (`key_name`)

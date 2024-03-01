@@ -1,7 +1,6 @@
 package com.verinite.commons.serviceimpl;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -69,7 +68,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	}
 
 	@Override
-	public Object getConfiguration(String key) throws BadRequestException {
+	public Config getConfiguration(String key) throws BadRequestException {
 		logger.info("[SERVICE] Request received to get configuration for key : {}", key);
 		if (key == null) {
 			throw new BadRequestException("Please pass a valid key");
@@ -78,14 +77,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 		if (config.isEmpty()) {
 			throw new BadRequestException("No data found for config key");
 		}
-
-		Map<String, Object> data = null;
-		try {
-			data = new ObjectMapper().readValue(config.get().getData(), Map.class);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return data;
+		return config.get();
 	}
 
 	@Override

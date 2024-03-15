@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.verinite.commons.dto.StatusResponse;
 import com.verinite.commons.service.ConfigurationService;
 
@@ -31,7 +33,7 @@ public class ConfigurationController {
 	}
 
 	@GetMapping("/{key}")
-	public ResponseEntity<Object> getConfiguration(@PathVariable String key) throws BadRequestException {
+	public ResponseEntity<Object> getConfiguration(@PathVariable String key) throws BadRequestException, JsonMappingException, JsonProcessingException, com.verinite.commons.controlleradvice.BadRequestException {
 		return ResponseEntity.ok(configService.getConfiguration(key));
 	}
 

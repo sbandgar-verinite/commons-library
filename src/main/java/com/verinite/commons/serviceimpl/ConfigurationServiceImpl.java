@@ -10,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.verinite.commons.controlleradvice.BadRequestException;
+import com.verinite.commons.dto.ConfigResponse;
 import com.verinite.commons.dto.StatusResponse;
 import com.verinite.commons.model.Config;
 import com.verinite.commons.repo.ConfigurationRepository;
@@ -28,6 +30,9 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
 	@Autowired
 	private ConfigurationRepository configRepo;
+
+	@Autowired
+	private ObjectMapper mapper;
 
 	@Override
 	public StatusResponse addConfiguration(String key, Object value) throws BadRequestException {
@@ -68,7 +73,8 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 	}
 
 	@Override
-	public Config getConfiguration(String key) throws BadRequestException {
+	public ConfigResponse getConfiguration(String key)
+			throws BadRequestException, JsonMappingException, JsonProcessingException {
 		logger.info("[SERVICE] Request received to get configuration for key : {}", key);
 		if (key == null) {
 			throw new BadRequestException("Please pass a valid key");
@@ -77,7 +83,8 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 		if (config.isEmpty()) {
 			throw new BadRequestException("No data found for config key");
 		}
-		return config.get();
+		return new ConfigResponse(mapper.readTree(config.get().getData()));
+//		return config.get();
 	}
 
 	@Override

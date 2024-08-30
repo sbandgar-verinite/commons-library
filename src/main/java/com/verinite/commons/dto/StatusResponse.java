@@ -1,5 +1,9 @@
 package com.verinite.commons.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(value = Include.NON_NULL)
 public class StatusResponse {
 
 	private String status;
@@ -36,6 +40,10 @@ public class StatusResponse {
 		this.status = status;
 		this.code = code;
 		this.message = message;
+	}
+	
+	public StatusResponse(String status) {
+		this.status = status;
 	}
 
 	public StatusResponse() {
